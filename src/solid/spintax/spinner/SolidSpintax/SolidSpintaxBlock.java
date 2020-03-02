@@ -2,6 +2,19 @@ package solid.spintax.spinner.SolidSpintax;
 
 import java.util.ArrayList;
 
+/**
+ * <i>Solid Spintax Block</i>
+ * <p>
+ * A series of one or or more Spintax elements (Spintax switches or normal text)
+ * comprising a block of text.
+ * <p>
+ * Implemented as an {@code ArrayList} of {@code SolidSpintaxElement}s.
+ * 
+ * @author Solid Security
+ * @author Vivek Nair
+ * @author Jacob Fuehne
+ * @since 2.0.0
+ */
 public class SolidSpintaxBlock implements SolidSpintaxElement {
 
     private final ArrayList<SolidSpintaxElement> body;
@@ -10,6 +23,10 @@ public class SolidSpintaxBlock implements SolidSpintaxElement {
         body = new ArrayList<>();
     }
 
+    /**
+     * Adds the provided {@code SolidSpintaxElement} to the block.
+     * @param sswitch element to be added
+     */
     public void addSwitch(SolidSpintaxElement sswitch) {
         body.add(sswitch);
     }

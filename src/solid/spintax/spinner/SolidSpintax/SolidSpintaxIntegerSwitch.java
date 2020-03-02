@@ -1,7 +1,20 @@
 package solid.spintax.spinner.SolidSpintax;
 
+/**
+ * <i>Solid Spintax Integer Switch</i>
+ * <p>
+ * Returns an integer in the specified range when spun.
+ * 
+ * Uses the
+ * <a href="https://github.com/SolidSecurity/Solid-Spintax-Specification">Solid Spintax</a>
+ * standard from <i>Solid Security</i>.
+ * 
+ * @author Solid Security
+ * @author Vivek Nair
+ * @author Jacob Fuehne
+ * @since 2.0.0
+ */
 public class SolidSpintaxIntegerSwitch implements SolidSpintaxElement {
-
     private final int min;
     private final int max;
 

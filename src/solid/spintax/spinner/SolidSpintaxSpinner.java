@@ -19,10 +19,30 @@ import net.sourceforge.argparse4j.inf.ArgumentParser;
 import net.sourceforge.argparse4j.inf.ArgumentParserException;
 import net.sourceforge.argparse4j.inf.Namespace;
 
+/**
+ * <i>Solid Spintax Spinner</i>
+ * <p>
+ * Command-line utility to generate uniquely identifiable documents using a provided spintax.
+ * <p>
+ * For command-line arguments, run with --help.
+ * <p>
+ * For additional documentation, check the
+ * <a href="https://github.com/SolidSecurity/Solid-Spintax-Spinner">GitHub</a>
+ * repository.
+ * <p>
+ * Uses the
+ * <a href="https://github.com/SolidSecurity/Solid-Spintax-Specification">Solid Spintax</a>
+ * standard from <i>Solid Security</i>.
+ * 
+ * @author Solid Security
+ * @author Vivek Nair
+ * @author Jacob Fuehne
+ * @version 2.0.0
+ * @since 2.0.0
+ */
 public class SolidSpintaxSpinner {
-
     public static final String SPINTAX_VERSION = "1.0.0";
-    public static final String SPINNER_VERSION = "2.0.0 r01";
+    public static final String SPINNER_VERSION = "2.0.0 r02";
     private static final int FILE_WARNING_NUM = 100;
     private static final int FILE_REJECT_NUM = 100000;
     private static final StringBuilder logOutput = new StringBuilder();
@@ -397,7 +417,7 @@ public class SolidSpintaxSpinner {
         }
     }
 
-    public static SolidSpintaxElement parse(String input) {
+    private static SolidSpintaxElement parse(String input) {
         if (input.matches("\\{[0-9]+-[0-9]+\\}")) {
             SolidSpintaxBlock text = new SolidSpintaxBlock();
             int pos = input.indexOf("-");
@@ -470,32 +490,19 @@ public class SolidSpintaxSpinner {
         return text;
     }
 
-    public static String readFileAsString(String fileName) throws Exception {
+    private static String readFileAsString(String fileName) throws Exception {
         String data = new String(Files.readAllBytes(Paths.get(fileName)));
         return data;
     }
 
-    public static ArrayList<Integer> getUniquePerms(int permutations, int numOfPerms) {
-        ArrayList<Integer> list = new ArrayList<>();
-        ArrayList<Integer> out = new ArrayList<>();
-        for (int i = 1; i < 11; i++) {
-            list.add(i);
-        }
-        Collections.shuffle(list);
-        for (int i = 0; i < numOfPerms; i++) {
-            out.add(list.get(i));
-        }
-        return out;
-    }
-
-    public static void output(String in) {
+    private static void output(String in) {
         System.out.println(in);
         if (log) {
             logOutput.append(in).append("\n");
         }
     }
 
-    public static void printHeader() {
+    private static void printHeader() {
         System.out.print("\n"
                 + "       /MMM/ yMMm .MMMs                                                         \n"
                 + "       /MMMmdNMMMddMMMs                                                         \n"
@@ -511,7 +518,7 @@ public class SolidSpintaxSpinner {
                 + "Solid Spinner v" + SPINNER_VERSION + " (Solid Spintax Standard v" + SPINTAX_VERSION + ")\n");
     }
 
-    public static void handleIncompatibles(Namespace res, String[] incompatible, String with) {
+    private static void handleIncompatibles(Namespace res, String[] incompatible, String with) {
         boolean error = false;
         for (String i : incompatible) {
             if (res.get(i) == null) {
@@ -527,11 +534,11 @@ public class SolidSpintaxSpinner {
         }
     }
 
-    public static String permToTag(int permutation) {
+    private static String permToTag(int permutation) {
         return Integer.toString(permutation, 36).toUpperCase();
     }
 
-    public static int tagToPerm(String tag) {
+    private static int tagToPerm(String tag) {
         return Integer.parseInt(tag, 36);
     }
 }

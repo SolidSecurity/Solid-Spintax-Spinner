@@ -2,6 +2,17 @@ package solid.spintax.spinner.SolidSpintax;
 
 import java.util.HashMap;
 
+/**
+ * <i>Solid Spintax Global Switch</i>
+ * <p>
+ * An extension of {@code SolidSpintaxSwitch} that always returns the same output
+ * as identical switches.
+ * 
+ * @author Solid Security
+ * @author Vivek Nair
+ * @author Jacob Fuehne
+ * @since 2.0.0
+ */
 public class SolidSpintaxGlobalSwitch extends SolidSpintaxSwitch implements SolidSpintaxElement {
 
     private String result;
@@ -12,6 +23,10 @@ public class SolidSpintaxGlobalSwitch extends SolidSpintaxSwitch implements Soli
         super();
     }
 
+    /**
+     * Specify the master switch that this switch should copy.
+     * @param master
+     */
     public void setMaster(SolidSpintaxGlobalSwitch master) {
         this.master = master;
     }
