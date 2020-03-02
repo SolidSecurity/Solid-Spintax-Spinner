@@ -347,9 +347,9 @@ public class SolidSpintaxSpinner {
                 }
 
                 int i = 0;
+                System.out.println("\nOUTPUT_FILE:TAG --");
                 for (BigInteger permutation : set) {
                     String document = spintax.spin(permutation);
-
                     String tag = permToTag(permutation);
                     String fileName = String.format("%0" + psize + "d", i) + suffix;
 
@@ -367,7 +367,7 @@ public class SolidSpintaxSpinner {
                 }
             } else {
                 System.out.println("Generating " + count + " random permutations...");
-
+                System.out.println("\nOUTPUT_FILE:TAG --");
                 for (BigInteger i = BigInteger.ZERO; i.compareTo(count) < 0; i = i.add(BigInteger.ONE)) {
                     BigInteger randomNumber;
                     do {
@@ -402,6 +402,7 @@ public class SolidSpintaxSpinner {
                 perm = tagToPerm(res.get("tag"));
             }
 
+            System.out.println("\nOUTPUT_FILE:TAG --");
             while (out.compareTo(count) < 0) {
                 String document = spintax.spin(perm);
 
