@@ -37,12 +37,12 @@ import net.sourceforge.argparse4j.inf.Namespace;
  * @author Solid Security
  * @author Vivek Nair
  * @author Jacob Fuehne
- * @version 2.0.1
+ * @version 2.1.0
  * @since 2.0.0
  */
 public class SolidSpintaxSpinner {
     public static final String SPINTAX_VERSION = "1.0.0";
-    public static final String SPINNER_VERSION = "2.0.1 r02";
+    public static final String SPINNER_VERSION = "2.1.0 r01";
     private static final int FILE_WARNING_NUM = 100;
     private static final int FILE_REJECT_NUM = 100000;
     private static final StringBuilder logOutput = new StringBuilder();
@@ -434,23 +434,28 @@ public class SolidSpintaxSpinner {
             }
         }
     }
-
-    private static SolidSpintaxElement parse(String input) {
-        if (input.matches("\\{[0-9]+-[0-9]+\\}")) {
+    
+    private static SolidSpintaxElement innerParse(String input) {
+        if (input.matches("[0-9]+-[0-9]+")) {
             SolidSpintaxBlock text = new SolidSpintaxBlock();
             int pos = input.indexOf("-");
-            int min = Integer.parseInt(input.substring(1, pos));
-            int max = Integer.parseInt(input.substring(pos + 1, input.length() - 1));
+            int min = Integer.parseInt(input.substring(0, pos));
+            int max = Integer.parseInt(input.substring(pos + 1, input.length()));
             SolidSpintaxIntegerSwitch temp = new SolidSpintaxIntegerSwitch(min, max);
             text.addSwitch(temp);
             return text;
+        } else {
+            return parse(input);
         }
+    }
 
+    private static SolidSpintaxElement parse(String input) {
         SolidSpintaxBlock text = new SolidSpintaxBlock();
         SolidSpintaxSwitch currSwitch;
         currSwitch = new SolidSpintaxSwitch();
         String substring = "";
         int openBracesCount = 0;
+        boolean firstOption = false;
         for (int i = 0; i < input.length(); i++) {
             char curr = input.charAt(i);
             if (curr == '@') {
@@ -461,6 +466,7 @@ public class SolidSpintaxSpinner {
                 case '{':
                     openBracesCount += 1;
                     if (openBracesCount == 1) {
+                        firstOption = true;
                         SolidSpintaxText temp = new SolidSpintaxText(substring);
                         text.addSwitch(temp);
                         substring = "";
@@ -469,6 +475,7 @@ public class SolidSpintaxSpinner {
                     break;
                 case '|':
                     if (openBracesCount == 1) {
+                        firstOption = false;
                         SolidSpintaxElement option = parse(substring);
                         currSwitch.addChild(option);
                         substring = "";
@@ -478,7 +485,12 @@ public class SolidSpintaxSpinner {
                 case '}':
                     openBracesCount -= 1;
                     if (openBracesCount == 0) {
-                        SolidSpintaxElement option = parse(substring);
+                        SolidSpintaxElement option;
+                        if(firstOption) {
+                            option = innerParse(substring);
+                        } else {
+                            option = parse(substring);
+                        }
                         currSwitch.addChild(option);
                         text.addSwitch(currSwitch);
 
