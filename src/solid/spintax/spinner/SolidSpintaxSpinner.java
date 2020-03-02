@@ -447,8 +447,8 @@ public class SolidSpintaxSpinner {
         if (input.matches("[0-9]+-[0-9]+")) {
             SolidSpintaxBlock text = new SolidSpintaxBlock();
             int pos = input.indexOf("-");
-            BigInteger min = new BigInteger(input.substring(1, pos));
-            BigInteger max = new BigInteger(input.substring(pos + 1, input.length() - 1));
+            BigInteger min = new BigInteger(input.substring(0, pos));
+            BigInteger max = new BigInteger(input.substring(pos + 1, input.length()));
             SolidSpintaxIntegerSwitch temp = new SolidSpintaxIntegerSwitch(min, max);
             text.addSwitch(temp);
             return text;
