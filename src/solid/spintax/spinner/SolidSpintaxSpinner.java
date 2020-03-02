@@ -42,7 +42,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
  */
 public class SolidSpintaxSpinner {
     public static final String SPINTAX_VERSION = "1.0.0";
-    public static final String SPINNER_VERSION = "2.0.1 r01";
+    public static final String SPINNER_VERSION = "2.0.1 r02";
     private static final int FILE_WARNING_NUM = 100;
     private static final int FILE_REJECT_NUM = 100000;
     private static final StringBuilder logOutput = new StringBuilder();
@@ -341,6 +341,7 @@ public class SolidSpintaxSpinner {
                 }
 
                 int i = 0;
+                System.out.println("\nOUTPUT_FILE:TAG --");
                 for (int permutation : set) {
                     String document = spintax.spin(permutation);
 
@@ -362,6 +363,7 @@ public class SolidSpintaxSpinner {
             } else {
                 System.out.println("Generating " + count + " random permutations...");
 
+                System.out.println("\nOUTPUT_FILE:TAG --");
                 for (int i = 0; i < count; i++) {
                     int permutation = rand.nextInt(permutations);
                     String document = spintax.spin(permutation);
@@ -392,6 +394,7 @@ public class SolidSpintaxSpinner {
                 perm = tagToPerm(res.get("tag"));
             }
 
+            System.out.println("\nOUTPUT_FILE:TAG --");
             while (out < count) {
                 String document = spintax.spin(perm);
 
