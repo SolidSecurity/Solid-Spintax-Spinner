@@ -133,6 +133,8 @@ public class SolidSpintaxSpinner {
             System.exit(1);
             return;
         }
+        
+        boolean valid = false;
 
         if (res.get("help")) {
             if (args.length > 1) {
@@ -150,16 +152,19 @@ public class SolidSpintaxSpinner {
         }
 
         if (res.get("info")) {
-            String[] incompatible = {"random", "sequential", "all", "unique", "permutation", "tag", "count", "out", "log"};
+            valid = true;
+            String[] incompatible = {"random", "sequential", "all", "unique", "permutation", "tag", "out", "log"};
             handleIncompatibles(res, incompatible, "info");
         }
 
         if (res.get("random")) {
+            valid = true;
             String[] incompatible = {"sequential", "all", "permutation", "tag"};
             handleIncompatibles(res, incompatible, "random");
         }
 
         if (res.get("sequential")) {
+            valid = true;
             String[] incompatible = {"random"};
             handleIncompatibles(res, incompatible, "sequential");
         }
@@ -170,16 +175,19 @@ public class SolidSpintaxSpinner {
         }
 
         if (res.get("permutation") != null) {
+            valid = true;
             String[] incompatible = {"tag", "random", "all"};
             handleIncompatibles(res, incompatible, "permutation");
         }
 
         if (res.get("tag") != null) {
+            valid = true;
             String[] incompatible = {"permutation", "random", "all"};
             handleIncompatibles(res, incompatible, "tag");
         }
 
-        if (res.get("all") != null) {
+        if (res.get("all")) {
+            valid = true;
             String[] incompatible = {"random", "permutation", "tag"};
             handleIncompatibles(res, incompatible, "all");
         }
@@ -191,6 +199,13 @@ public class SolidSpintaxSpinner {
 
         if (res.get("log") != null) {
             log = true;
+        }
+        
+        if(!valid) {
+            System.out.println("ERROR: No operation provided. One of random, "
+                    + "sequential, all, permutation, tag, info, version, or help "
+                    + "is required.");
+            System.exit(1);
         }
 
         System.out.print("\n");
@@ -527,6 +542,7 @@ public class SolidSpintaxSpinner {
             if (res.get(i) instanceof Boolean && (boolean) res.get(i) == false) {
                 continue;
             }
+            error = true;
             System.out.println("\nERROR: --" + i + " cannot be used with --" + with + ".\n");
         }
         if (error) {
