@@ -38,12 +38,12 @@ import net.sourceforge.argparse4j.inf.Namespace;
  * @author Solid Security
  * @author Vivek Nair
  * @author Jacob Fuehne
- * @version 2.2.0
+ * @version 2.2.1
  * @since 2.0.0
  */
 public class SolidSpintaxSpinner {
     public static final String SPINTAX_VERSION = "1.0.0";
-    public static final String SPINNER_VERSION = "2.2.0 r01";
+    public static final String SPINNER_VERSION = "2.2.1 r01";
     private static final BigInteger FILE_WARNING_NUM = BigInteger.valueOf(100);
     private static final BigInteger FILE_REJECT_NUM = BigInteger.valueOf(100000);
     private static final StringBuilder logOutput = new StringBuilder();
