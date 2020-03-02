@@ -442,8 +442,8 @@ public class SolidSpintaxSpinner {
         }
     }
     
-    private static SolidSpintaxElement parse(String input) {
-        if (input.matches("\\{[0-9]+-[0-9]+\\}")) {
+    private static SolidSpintaxElement innerParse(String input) {
+        if (input.matches("[0-9]+-[0-9]+")) {
             SolidSpintaxBlock text = new SolidSpintaxBlock();
             int pos = input.indexOf("-");
             BigInteger min = new BigInteger(input.substring(1, pos));
@@ -451,13 +451,18 @@ public class SolidSpintaxSpinner {
             SolidSpintaxIntegerSwitch temp = new SolidSpintaxIntegerSwitch(min, max);
             text.addSwitch(temp);
             return text;
+        } else {
+            return parse(input);
         }
+    }
 
+    private static SolidSpintaxElement parse(String input) {
         SolidSpintaxBlock text = new SolidSpintaxBlock();
         SolidSpintaxSwitch currSwitch;
         currSwitch = new SolidSpintaxSwitch();
         String substring = "";
         int openBracesCount = 0;
+        boolean firstOption = false;
         for (int i = 0; i < input.length(); i++) {
             char curr = input.charAt(i);
             if (curr == '@') {
@@ -468,6 +473,7 @@ public class SolidSpintaxSpinner {
                 case '{':
                     openBracesCount += 1;
                     if (openBracesCount == 1) {
+                        firstOption = true;
                         SolidSpintaxText temp = new SolidSpintaxText(substring);
                         text.addSwitch(temp);
                         substring = "";
@@ -476,6 +482,7 @@ public class SolidSpintaxSpinner {
                     break;
                 case '|':
                     if (openBracesCount == 1) {
+                        firstOption = false;
                         SolidSpintaxElement option = parse(substring);
                         currSwitch.addChild(option);
                         substring = "";
@@ -485,7 +492,12 @@ public class SolidSpintaxSpinner {
                 case '}':
                     openBracesCount -= 1;
                     if (openBracesCount == 0) {
-                        SolidSpintaxElement option = parse(substring);
+                        SolidSpintaxElement option;
+                        if(firstOption) {
+                            option = innerParse(substring);
+                        } else {
+                            option = parse(substring);
+                        }
                         currSwitch.addChild(option);
                         text.addSwitch(currSwitch);
 
