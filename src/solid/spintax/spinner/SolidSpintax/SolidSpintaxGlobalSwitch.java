@@ -1,5 +1,6 @@
 package solid.spintax.spinner.SolidSpintax;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 
 /**
@@ -32,7 +33,7 @@ public class SolidSpintaxGlobalSwitch extends SolidSpintaxSwitch implements Soli
     }
 
     @Override
-    public String spin(int tag) {
+    public String spin(BigInteger tag) {
         if (master == null) {
             this.result = super.spin(tag);
             return result;
@@ -47,11 +48,11 @@ public class SolidSpintaxGlobalSwitch extends SolidSpintaxSwitch implements Soli
     }
 
     @Override
-    public int countPermutations() {
+    public BigInteger countPermutations() {
         if (master == null) {
             return super.countPermutations();
         } else {
-            return 1;
+            return BigInteger.ONE;
         }
     }
 }

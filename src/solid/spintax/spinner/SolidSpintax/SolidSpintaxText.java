@@ -1,5 +1,7 @@
 package solid.spintax.spinner.SolidSpintax;
 
+import java.math.BigInteger;
+
 /**
  * <i>Solid Spintax Text</i>
  * <p>
@@ -18,8 +20,8 @@ public class SolidSpintaxText implements SolidSpintaxElement {
     }
 
     @Override
-    public String spin(int tag) {
-        if (tag != 0) {
+    public String spin(BigInteger tag) {
+        if (!tag.equals(BigInteger.ZERO)) {
             System.out.print("ERROR: Unable to generate spintax.");
             System.exit(1);
         }
@@ -40,8 +42,8 @@ public class SolidSpintaxText implements SolidSpintaxElement {
     }
 
     @Override
-    public int countPermutations() {
-        return 1;
+    public BigInteger countPermutations() {
+        return BigInteger.ONE;
     }
 
     @Override

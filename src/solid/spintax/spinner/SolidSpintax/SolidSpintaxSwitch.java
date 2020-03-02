@@ -1,5 +1,6 @@
 package solid.spintax.spinner.SolidSpintax;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 /**
@@ -34,15 +35,15 @@ public class SolidSpintaxSwitch implements SolidSpintaxElement {
     }
 
     @Override
-    public String spin(int tag) {
+    public String spin(BigInteger tag) {
         int length = children.size();
         //absolute int range
         for (int i = 0; i < children.size(); i++) {
-            int curPermutations = children.get(i).countPermutations();
-            if (tag < curPermutations) {
+            BigInteger curPermutations = children.get(i).countPermutations();
+            if (tag.compareTo(curPermutations) < 0) {
                 return children.get(i).spin(tag);
             } else {
-                tag -= curPermutations;
+                tag = tag.subtract(curPermutations);
             }
         }
         System.out.println("Error: tag not reached");
@@ -74,9 +75,11 @@ public class SolidSpintaxSwitch implements SolidSpintaxElement {
     }
 
     @Override
-    public int countPermutations() {
-        int permutations = 0;
-        permutations = children.stream().map((s) -> s.countPermutations()).reduce(permutations, Integer::sum);
+    public BigInteger countPermutations() {
+        BigInteger permutations = BigInteger.ZERO;
+        for (SolidSpintaxElement s : children) {
+            permutations = permutations.add(s.countPermutations());
+        }
         return permutations;
     }
 

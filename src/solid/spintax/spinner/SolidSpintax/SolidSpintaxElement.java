@@ -1,5 +1,7 @@
 package solid.spintax.spinner.SolidSpintax;
 
+import java.math.BigInteger;
+
 /**
  * <i>Solid Spintax Element</i>
  * <p>
@@ -20,7 +22,7 @@ public interface SolidSpintaxElement {
      * @return text value of generated document
      * @since 2.0.0
      */
-    public String spin(int permutation);
+    public String spin(BigInteger permutation);
 
     /**
      * Returns the actual spintax corresponding to this object.
@@ -37,7 +39,7 @@ public interface SolidSpintaxElement {
      * @return number of permutations
      * @since 2.0.0
      */
-    public int countPermutations();
+    public BigInteger countPermutations();
     
     /**
      * Returns the number of switches in this object.

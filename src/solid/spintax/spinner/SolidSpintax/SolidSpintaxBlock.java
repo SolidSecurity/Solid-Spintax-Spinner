@@ -1,5 +1,6 @@
 package solid.spintax.spinner.SolidSpintax;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 /**
@@ -32,18 +33,18 @@ public class SolidSpintaxBlock implements SolidSpintaxElement {
     }
 
     @Override
-    public String spin(int tag) {
+    public String spin(BigInteger tag) {
         String out = "";
-        int permutations = 0;
+        BigInteger permutations = BigInteger.ZERO;
         for (SolidSpintaxElement sswitch : body) {
-            int currPermutations = sswitch.countPermutations();
-            if (currPermutations == 1) {
-                out += sswitch.spin(0);
+            BigInteger currPermutations = sswitch.countPermutations();
+            if (currPermutations.equals(BigInteger.ONE)) {
+                out += sswitch.spin(BigInteger.ZERO);
                 continue;
             }
-            int childTag = tag % currPermutations;
+            BigInteger childTag = tag.mod(currPermutations);
             out += sswitch.spin(childTag);
-            tag = (tag - childTag) / currPermutations;
+            tag = (tag.subtract(childTag)).divide(currPermutations);
         }
         return out;
     }
@@ -57,12 +58,14 @@ public class SolidSpintaxBlock implements SolidSpintaxElement {
     }
 
     @Override
-    public int countPermutations() {
-        int permutations = 1;
-        permutations = body.stream().map((s) -> s.countPermutations()).reduce(permutations, (accumulator, _item) -> accumulator * _item);
+    public BigInteger countPermutations() {
+        BigInteger permutations = BigInteger.ONE;
+        for (SolidSpintaxElement s : body) {
+            permutations = permutations.multiply(s.countPermutations());
+        }
         return permutations;
     }
-
+    
     @Override
     public int countSwitches() {
         int switches = 0;

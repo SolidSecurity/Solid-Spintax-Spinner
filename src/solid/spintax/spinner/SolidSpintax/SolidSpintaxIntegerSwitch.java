@@ -1,4 +1,5 @@
 package solid.spintax.spinner.SolidSpintax;
+import java.math.BigInteger; 
 
 /**
  * <i>Solid Spintax Integer Switch</i>
@@ -15,39 +16,39 @@ package solid.spintax.spinner.SolidSpintax;
  * @since 2.0.0
  */
 public class SolidSpintaxIntegerSwitch implements SolidSpintaxElement {
-    private final int min;
-    private final int max;
+    private final BigInteger min;
+    private final BigInteger max;
 
-    public SolidSpintaxIntegerSwitch(int min, int max) {
+    public SolidSpintaxIntegerSwitch(BigInteger min, BigInteger max) {
         this.min = min;
         this.max = max;
     }
 
     @Override
-    public String spin(int tag) {
+    public String spin(BigInteger tag) {
         //Random rand = new Random();
         //absolute int range
-        int range = max - min + 1;
-        if (tag + min > max) {
+        BigInteger range = max.subtract(min).add(BigInteger.ONE);
+        if (tag.add(min).compareTo(max) > 0) {
             System.out.println("SolidIntSwitch tag not in range");
             return "ERROR";
         }
-        int num = tag + min;
-        String out = Integer.toString(num);
+        BigInteger num = tag.add(min);
+        String out = num.toString();
         return out;
     }
 
     @Override
     public String toString() {
         String out = "{";
-        out += Integer.toString(min) + "-" + Integer.toString(max);
+        out += min.toString() + "-" + max.toString();
         out += "}";
         return out;
     }
 
     @Override
-    public int countPermutations() {
-        int permutations = max - min + 1;
+    public BigInteger countPermutations() {
+        BigInteger permutations = max.subtract(min).add(BigInteger.ONE);
         return permutations;
     }
 
