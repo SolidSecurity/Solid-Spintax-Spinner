@@ -85,7 +85,7 @@ public class SolidSpintaxSpinner {
                 .description("identifies a particular permutation to be generated");
         identifiers.addArgument("-p", "--permutation")
                 .metavar("<#>")
-                .type(Integer.class)
+                .type(BigInteger.class)
                 .help("generate the output document corresponding to a specific permutation number");
         identifiers.addArgument("-t", "--tag")
                 .metavar("<TAG>")
@@ -95,7 +95,7 @@ public class SolidSpintaxSpinner {
                 .description("specify where output files should be stored");
         output.addArgument("-n", "--count")
                 .metavar("<#>")
-                .type(Integer.class)
+                .type(BigInteger.class)
                 .setDefault(1)
                 .help("specifies the number of files to be generated");
         output.addArgument("-y", "--yes")
