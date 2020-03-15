@@ -17,7 +17,7 @@ echo "alias spinner='java -jar $PWD/Solid-Spintax-Spinner/dist/Solid-Spintax-Spi
 
 ### Download
 #### (Recommended) Download Release
-Download the latest release as a .zip containing required dependencies along with an executable .jar file from our [release page](https://github.com/SolidSecurity/Solid-Spintax-Specification/releases).
+Download the latest release as a .zip containing required dependencies along with an executable .jar file from our [release page](https://github.com/SolidSecurity/Solid-Spintax-Spinner/releases).
 
 #### (Alternative) Build from Source
 The repository also contains NetBeans project files for those who wish to make modifications and then build the repository themselves.
