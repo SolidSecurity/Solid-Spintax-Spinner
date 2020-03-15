@@ -51,7 +51,7 @@ The spinner accepts an input file and a set of arguments:
 
 `-r, --random`: generate random permutations of the provided spintax
 
-For each output file, random will pick a random permutation in [0, permutations) and output that permutation. Therefore, the output is uniformly random in tag space (but not necesarrily uniform switch by switch). Outputs are not necesarrily unique unless `-u` is specified. By default, only 1 random file is generated unless `-c <#>` is specified.
+For each output file, random will pick a random permutation in [0, permutations) and output that permutation. Therefore, the output is uniformly random in tag space (but not necessarily uniform switch by switch). Outputs are not necessarily unique unless `-u` is specified. By default, only 1 random file is generated unless `-c <#>` is specified.
 
 `-s, --sequential`: generates sequential permutations of the provided spintax
 
