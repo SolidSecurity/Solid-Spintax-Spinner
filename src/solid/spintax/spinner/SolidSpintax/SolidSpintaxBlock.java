@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * comprising a block of text.
  * <p>
  * Implemented as an {@code ArrayList} of {@code SolidSpintaxElement}s.
- * 
+ *
  * @author Solid Security
  * @author Vivek Nair
  * @author Jacob Fuehne
@@ -35,7 +35,6 @@ public class SolidSpintaxBlock implements SolidSpintaxElement {
     @Override
     public String spin(BigInteger tag) {
         String out = "";
-        BigInteger permutations = BigInteger.ZERO;
         for (SolidSpintaxElement sswitch : body) {
             BigInteger currPermutations = sswitch.countPermutations();
             if (currPermutations.equals(BigInteger.ONE)) {
@@ -65,7 +64,7 @@ public class SolidSpintaxBlock implements SolidSpintaxElement {
         }
         return permutations;
     }
-    
+
     @Override
     public int countSwitches() {
         int switches = 0;

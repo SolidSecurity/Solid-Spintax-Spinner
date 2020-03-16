@@ -6,7 +6,7 @@ import java.math.BigInteger;
  * <i>Solid Spintax Text</i>
  * <p>
  * A basic spintax element that returns a piece of text when spun.
- * 
+ *
  * @author Solid Security
  * @author Vivek Nair
  * @author Jacob Fuehne
@@ -33,7 +33,7 @@ public class SolidSpintaxText implements SolidSpintaxElement {
         String out = "";
         for (int i = 0; i < body.length(); i++) {
             char curr = body.charAt(i);
-            if (curr == '@' || curr == '|' || curr == '{' || curr == '}' || curr == '\\') {
+            if (curr == '@' || curr == '|' || curr == '{' || curr == '}' || curr == '\\' || curr == '!') {
                 out += '\\';
             }
             out += curr;

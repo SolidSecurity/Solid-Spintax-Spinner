@@ -8,7 +8,7 @@ import java.util.HashMap;
  * <p>
  * An extension of {@code SolidSpintaxSwitch} that always returns the same output
  * as identical switches.
- * 
+ *
  * @author Solid Security
  * @author Vivek Nair
  * @author Jacob Fuehne
