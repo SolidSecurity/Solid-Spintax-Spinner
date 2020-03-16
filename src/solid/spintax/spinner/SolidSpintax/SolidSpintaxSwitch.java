@@ -35,18 +35,16 @@ public class SolidSpintaxSwitch implements SolidSpintaxElement {
     }
 
     @Override
-    public String spin(BigInteger tag) {
-        int length = children.size();
-        //absolute int range
+    public String spin(BigInteger permutation) {
         for (int i = 0; i < children.size(); i++) {
             BigInteger curPermutations = children.get(i).countPermutations();
-            if (tag.compareTo(curPermutations) < 0) {
-                return children.get(i).spin(tag);
+            if (permutation.compareTo(curPermutations) < 0) {
+                return children.get(i).spin(permutation);
             } else {
-                tag = tag.subtract(curPermutations);
+                permutation = permutation.subtract(curPermutations);
             }
         }
-        System.out.println("Error: tag not reached");
+        System.out.println("Error: permutation not reached");
         return "ERROR";
     }
 
