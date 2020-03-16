@@ -33,18 +33,13 @@ public class SolidSpintaxBlock implements SolidSpintaxElement {
     }
 
     @Override
-    public String spin(BigInteger tag) {
+    public String spin(BigInteger permutation) {
         String out = "";
-        BigInteger permutations = BigInteger.ZERO;
         for (SolidSpintaxElement sswitch : body) {
             BigInteger currPermutations = sswitch.countPermutations();
-            if (currPermutations.equals(BigInteger.ONE)) {
-                out += sswitch.spin(BigInteger.ZERO);
-                continue;
-            }
-            BigInteger childTag = tag.mod(currPermutations);
-            out += sswitch.spin(childTag);
-            tag = (tag.subtract(childTag)).divide(currPermutations);
+            BigInteger childPermutation = permutation.mod(currPermutations);
+            out += sswitch.spin(childPermutation);
+            permutation = (permutation.subtract(childPermutation)).divide(currPermutations);
         }
         return out;
     }
