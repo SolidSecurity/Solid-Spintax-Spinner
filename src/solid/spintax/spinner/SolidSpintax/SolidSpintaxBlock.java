@@ -43,7 +43,7 @@ public class SolidSpintaxBlock implements SolidSpintaxElement {
             }
             BigInteger childPermutation = permutation.mod(currPermutations);
             out += sswitch.spin(childPermutation);
-            permutation = (permutation.subtract(childTag)).divide(currPermutations);
+            permutation = (permutation.subtract(childPermutation)).divide(currPermutations);
         }
         return out;
     }
