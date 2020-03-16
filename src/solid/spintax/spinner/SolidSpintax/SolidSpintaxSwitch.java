@@ -7,11 +7,11 @@ import java.util.ArrayList;
  * <i>Solid Spintax Switch</i>
  * <p>
  * A standard switch that chooses from amongst its children when spun.
- * 
+ *
  * Uses the
  * <a href="https://github.com/SolidSecurity/Solid-Spintax-Specification">Solid Spintax</a>
  * standard from <i>Solid Security</i>.
- * 
+ *
  * @author Solid Security
  * @author Vivek Nair
  * @author Jacob Fuehne
@@ -43,7 +43,7 @@ public class SolidSpintaxSwitch implements SolidSpintaxElement {
             if (tag.compareTo(curPermutations) < 0) {
                 return children.get(i).spin(tag);
             } else {
-                tag = tag.subtract(curPermutations);
+                tag = tag.subtract(curPermutations); //Why are you using tag.subtract?
             }
         }
         System.out.println("Error: tag not reached");
@@ -86,6 +86,8 @@ public class SolidSpintaxSwitch implements SolidSpintaxElement {
     @Override
     public int countSwitches() {
         int count = 1;
+
+        //What is this line?
         count = children.stream().map((s) -> s.countSwitches()).reduce(count, Integer::sum);
         return count;
     }

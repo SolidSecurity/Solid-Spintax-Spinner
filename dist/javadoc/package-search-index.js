@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"solid.spintax.spinner"},{"l":"solid.spintax.spinner.SolidSpintax"}]

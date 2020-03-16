@@ -11,7 +11,7 @@ import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
-import java.math.BigInteger; 
+import java.math.BigInteger;
 import solid.spintax.spinner.SolidSpintax.*;
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.impl.Arguments;
@@ -34,7 +34,7 @@ import net.sourceforge.argparse4j.inf.Namespace;
  * Uses the
  * <a href="https://github.com/SolidSecurity/Solid-Spintax-Specification">Solid Spintax</a>
  * standard from <i>Solid Security</i>.
- * 
+ *
  * @author Solid Security
  * @author Vivek Nair
  * @author Jacob Fuehne
@@ -134,7 +134,7 @@ public class SolidSpintaxSpinner {
             System.exit(1);
             return;
         }
-        
+
         boolean valid = false;
 
         if (res.get("help")) {
@@ -201,7 +201,7 @@ public class SolidSpintaxSpinner {
         if (res.get("log") != null) {
             log = true;
         }
-        
+
         if(!valid) {
             System.out.println("ERROR: No operation provided. One of random, "
                     + "sequential, all, permutation, tag, info, version, or help "
@@ -246,7 +246,7 @@ public class SolidSpintaxSpinner {
         }
 
         boolean sequential = res.get("sequential");
-        
+
         int countInt = res.get("count");
         BigInteger count = BigInteger.valueOf(countInt);
 
@@ -442,7 +442,7 @@ public class SolidSpintaxSpinner {
             }
         }
     }
-    
+
     private static SolidSpintaxElement innerParse(String input) {
         if (input.matches("[0-9]+-[0-9]+")) {
             SolidSpintaxBlock text = new SolidSpintaxBlock();
@@ -468,6 +468,10 @@ public class SolidSpintaxSpinner {
             char curr = input.charAt(i);
             if (curr == '@') {
                 currSwitch = new SolidSpintaxGlobalSwitch();
+                continue;
+            }
+            if (curr == '!') {
+                currSwitch = new SolidSpintaxShuffleSwitch();
                 continue;
             }
             switch (curr) {
