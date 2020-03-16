@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 
 /**
- * <i>Solid Spintax Switch</i>
+ * <i>Solid Spintax Shuffle Switch</i>
  * <p>
  * A standard switch that chooses from amongst its children when spun.
  *
@@ -13,8 +13,7 @@ import java.util.ArrayList;
  * standard from <i>Solid Security</i>.
  *
  * @author Solid Security
- * @author Vivek Nair
- * @author Jacob Fuehne
+ * @author Thomas Quig
  * @since 2.0.0
  */
 public class SolidSpintaxShuffleSwitch extends SolidSpintaxSwitch implements SolidSpintaxElement {
@@ -83,7 +82,7 @@ public class SolidSpintaxShuffleSwitch extends SolidSpintaxSwitch implements Sol
 
     /**
      * Returns an {@code ArrayList} of this switch's options.
-     * @return list of children
+     * @return list of options
      * @since 2.0.0
      */
     public ArrayList<SolidSpintaxElement> getOptions() {
