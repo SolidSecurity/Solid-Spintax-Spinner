@@ -19,7 +19,6 @@ import java.util.ArrayList;
  */
 public class SolidSpintaxSwitch implements SolidSpintaxElement {
     private final ArrayList<SolidSpintaxElement> children;
-    private final int switches = 0;
 
     public SolidSpintaxSwitch() {
         children = new ArrayList<>();
@@ -40,11 +39,12 @@ public class SolidSpintaxSwitch implements SolidSpintaxElement {
             BigInteger curPermutations = children.get(i).countPermutations();
             if (permutation.compareTo(curPermutations) < 0) {
                 return children.get(i).spin(permutation);
-            } else {
+            } else {';
                 permutation = permutation.subtract(curPermutations);
             }
         }
         System.out.println("Error: permutation not reached");
+        System.exit(0);
         return "ERROR";
     }
 
