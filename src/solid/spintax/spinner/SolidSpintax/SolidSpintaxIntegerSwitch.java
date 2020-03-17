@@ -28,6 +28,7 @@ public class SolidSpintaxIntegerSwitch implements SolidSpintaxElement {
     public String spin(BigInteger permutation) {
         if (permutation.add(min).compareTo(max) > 0) {
             System.out.println("SolidIntSwitch permutation not in range");
+            System.exit(0);
             return "ERROR";
         }
         BigInteger num = permutation.add(min);
