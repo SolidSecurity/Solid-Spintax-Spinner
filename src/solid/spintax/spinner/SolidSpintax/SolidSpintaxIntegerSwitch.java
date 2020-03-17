@@ -25,15 +25,13 @@ public class SolidSpintaxIntegerSwitch implements SolidSpintaxElement {
     }
 
     @Override
-    public String spin(BigInteger tag) {
-        //Random rand = new Random();
-        //absolute int range
-        BigInteger range = max.subtract(min).add(BigInteger.ONE);
-        if (tag.add(min).compareTo(max) > 0) {
-            System.out.println("SolidIntSwitch tag not in range");
+    public String spin(BigInteger permutation) {
+        if (permutation.add(min).compareTo(max) > 0) {
+            System.out.println("SolidIntSwitch permutation not in range");
+            System.exit(0);
             return "ERROR";
         }
-        BigInteger num = tag.add(min);
+        BigInteger num = permutation.add(min);
         String out = num.toString();
         return out;
     }
